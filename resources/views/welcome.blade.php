@@ -1,16 +1,179 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restaurant Inventory System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            color: white;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .btn-hero {
+            padding: 12px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-login {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-login:hover {
+            background: #f0f0f0;
+            color: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-register {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-register:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            background: white;
+            padding: 60px 20px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .feature-card i {
+            color: #667eea;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="hero-content">
+            <i class="bi bi-soup" style="font-size: 4rem; margin-bottom: 1rem; display: block;"></i>
+            <h1>Restaurant Inventory System</h1>
+            <p>Manage your restaurant's ingredients, menu items, and orders efficiently</p>
+            
+            @guest
+                <div>
+                    <a href="{{ route('login') }}" class="btn-hero btn-login">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                    <a href="{{ route('auth.showRegister') }}" class="btn-hero btn-register">
+                        <i class="bi bi-person-plus"></i> Register
+                    </a>
+                </div>
+            @endguest
+            
+            @auth
+                <div>
+                    <a href="{{ route('dashboard') }}" class="btn-hero btn-login">
+                        <i class="bi bi-speedometer2"></i> Go to Dashboard
+                    </a>
+                </div>
+            @endauth
+        </div>
+    </section>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <section class="features">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 2.5rem; color: #1b1b18;">
+                <i class="bi bi-star-fill" style="color: #667eea;"></i> Key Features
+            </h2>
+            
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-tags"></i>
+                        <h4>Category Management</h4>
+                        <p class="text-muted">Organize your food items by categories for better inventory control</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-box-seam"></i>
+                        <h4>Ingredient Tracking</h4>
+                        <p class="text-muted">Keep track of all ingredients with real-time stock updates</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-cup-hot"></i>
+                        <h4>Menu Management</h4>
+                        <p class="text-muted">Create and manage menu items with associated recipes</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-cart-check"></i>
+                        <h4>Order Processing</h4>
+                        <p class="text-muted">Track and manage orders with complete order history</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-
-        <!-- Styles / Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
@@ -25,7 +188,7 @@
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
-                            href="{{ url('/dashboard') }}"
+                            href="{{ route('dashboard') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
                         >
                             Dashboard
@@ -38,9 +201,9 @@
                             Log in
                         </a>
 
-                        @if (Route::has('register'))
+                        @if (Route::has('auth.showRegister'))
                             <a
-                                href="{{ route('register') }}"
+                                href="{{ route('auth.showRegister') }}"
                                 class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                                 Register
                             </a>

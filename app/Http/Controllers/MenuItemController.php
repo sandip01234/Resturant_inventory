@@ -13,13 +13,13 @@ class MenuItemController extends Controller
     public function index()
     {
         $menuItems = MenuItem::with('category')->get();
-        return view('menu-items.index', compact('menuItems'));
+        return view('menu-item.index', compact('menuItems'));
     }
 
     public function create()
     {
         $categories = Category::all();
-        return view('menu-items.create', compact('categories'));
+        return view('menu-item.create', compact('categories'));
     }
 
     public function store(StoreMenuItemRequest $request)
@@ -35,13 +35,13 @@ class MenuItemController extends Controller
     public function show(MenuItem $menuItem)
     {
         $ingredients = Ingredient::all(); // Assuming we need ingredients for attach in show
-        return view('menu-items.show', compact('menuItem', 'ingredients'));
+        return view('menu-item.show', compact('menuItem', 'ingredients'));
     }
 
     public function edit(MenuItem $menuItem)
     {
         $categories = Category::all();
-        return view('menu-items.edit', compact('menuItem', 'categories'));
+        return view('menu-item.edit', compact('menuItem', 'categories'));
     }
 
     public function update(StoreMenuItemRequest $request, MenuItem $menuItem)
